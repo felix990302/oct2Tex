@@ -1,6 +1,6 @@
 '''
 usage:
-cat about.txt | python soinput.py
+python oct2tex.py < input.txt
 '''
 
 
