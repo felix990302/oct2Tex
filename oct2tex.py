@@ -22,7 +22,12 @@ def tokenize(input):
                 tokens.append(numberize(temp))
                 temp = ""
 
-        elif(i==";" or i=="=" or i=="]" or i=="[" or i=="*" or i=="/" or i=="+" or i=="-"):
+        elif(i=="["):
+            tokens.append(temp)
+            tokens.append(i)
+            temp=""
+
+        elif(i==";" or i=="=" or i=="]" or i=="*" or i=="/" or i=="+"):
             tokens.append(numberize(temp))
             tokens.append(i)
             temp=""
@@ -33,15 +38,7 @@ def tokenize(input):
     return tokens
 
 def numberize(s):
-    try:
-        ans = int(s)
-        return ans
-    except Exception:
-        try:
-            ans = float(s)
-            return ans
-        except Exception:
-            return s
+    return "%"+str(s)
 
 
 def interp(tokens):
@@ -62,7 +59,7 @@ def interp(tokens):
         else:
             prev = t
 
-        if(isinstance(prev, int) or isinstance(prev, float)):
+        if(t!='' and t[0]=='%'):
             tokens[ind] = " & " + str(t)
 
     return tokens
@@ -72,7 +69,7 @@ def main():
     out = interp(tokenize(read_in()))
 
     for s in out:
-        print(s, end="", flush=True)
+        print(s, end='', flush=True)
 
 
 
