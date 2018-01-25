@@ -22,9 +22,9 @@ def tokenize(input):
                 tokens.append(numberize(temp))
                 temp = ""
 
-        elif(i==";"):
+        elif(i==";" or i=="=" or i=="]" or i=="[" or i=="*" or i=="/" or i=="+" or i=="-"):
             tokens.append(numberize(temp))
-            tokens.append(";")
+            tokens.append(i)
             temp=""
 
         else:
@@ -52,7 +52,7 @@ def interp(tokens):
 
         if(t=="["):
             prev = t
-            tokens[ind] = "\\begin{bmatrix}\n"
+            tokens[ind] = "\n\\begin{bmatrix}\n"
         elif(t=="]"):
             prev = t
             tokens[ind] = "\n\\end{bmatrix}\n"
